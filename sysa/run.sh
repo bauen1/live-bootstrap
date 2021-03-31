@@ -76,6 +76,11 @@ build perl5.005_03
 
 build perl-5.6.2
 
+# Stow is used to symlink pseudo packages from /after/upkgs/$pkgname/$pkgversion into /after
+# It could be replaced by hand crafted shell script, but that would likely be buggier and isn't
+# as easy as just building stow for now
+build stow-2.2.2
+
 populate_device_nodes
 
 build autoconf-2.52 stage1.sh

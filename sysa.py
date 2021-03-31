@@ -337,6 +337,9 @@ class SysA:
         # perl 5.6.2
         self.get_file("https://www.cpan.org/src/5.0/perl-5.6.2.tar.gz")
 
+        # stow 2.2.2
+        self.get_file("https://ftp.gnu.org/gnu/stow/stow-2.2.2.tar.bz2")
+
         # autoconf 2.52
         self.get_file("https://mirrors.kernel.org/gnu/autoconf/autoconf-2.52.tar.bz2")
 

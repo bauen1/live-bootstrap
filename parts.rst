@@ -365,6 +365,13 @@ perl 5.6.2
 
 Even more perl. 5.6.2 is the last version buildable with 5.005.
 
+stow 2.2.2
+==========
+
+GNU Stow is a tool for managing symlinks, it is used to store pseudo packages under
+/upkg and symlink them into / allowing for easy source attribution and removal of
+these pseudo packages.
+
 autoconf 2.52
 =============
 
