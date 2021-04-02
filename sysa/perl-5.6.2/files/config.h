@@ -23,6 +23,10 @@
 #define HAS_FLOCK
 #define HAS_TRUNCATE
 
+/* Required by GNU Stow */
+#define HAS_SYMLINK
+#define HAS_LSTAT
+
 #define HAS_VPRINTF
 #define Gid_t gid_t
 
