@@ -15,4 +15,5 @@ miniperl: $(MINIPERL_OBJ)
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@
 
 install: all
+	install --directory $(DESTDIR)$(PREFIX)/bin
 	install miniperl $(DESTDIR)$(PREFIX)/bin/perl

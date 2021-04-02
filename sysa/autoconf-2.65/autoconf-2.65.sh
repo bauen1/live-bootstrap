@@ -4,7 +4,12 @@
 
 src_prepare() {
     rm doc/standards.info
-    autoreconf-2.61 -f
+    AUTOMAKE="automake-1.10" \
+        ACLOCAL="aclocal-1.10" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.61" \
+        AUTOM4TE="autom4te-2.61" \
+        autoreconf-2.61 -f
 
     # Install autoconf data files into versioned directory
     for file in */*/Makefile.in */Makefile.in Makefile.in; do
@@ -13,7 +18,12 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --prefix="${PREFIX}" --program-suffix=-2.65
+    AUTOMAKE="automake-1.10" \
+        ACLOCAL="aclocal-1.10" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.61" \
+        AUTOM4TE="autom4te-2.61" \
+        ./configure --prefix="${PREFIX}" --program-suffix=-2.65
 }
 
 src_compile() {
@@ -22,9 +32,4 @@ src_compile() {
 
 src_install() {
     make install MAKEINFO=true DESTDIR="${DESTDIR}"
-
-    ln -sf "${PREFIX}/bin/autoconf-2.65" "${DESTDIR}${PREFIX}/bin/autoconf"
-    ln -sf "${PREFIX}/bin/autoheader-2.65" "${DESTDIR}${PREFIX}/bin/autoheader"
-    ln -sf "${PREFIX}/bin/autom4te-2.65" "${DESTDIR}${PREFIX}/bin/autom4te"
-    ln -sf "${PREFIX}/bin/autoreconf-2.65" "${DESTDIR}${PREFIX}/bin/autoreconf"
 }

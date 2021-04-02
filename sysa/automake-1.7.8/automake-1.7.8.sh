@@ -5,11 +5,11 @@
 src_prepare() {
     rm configure Makefile.in */Makefile.in */*/Makefile.in aclocal.m4 automake.info*
 
-    autoreconf-2.55
+    AUTOMAKE="automake-1.7" ACLOCAL="aclocal-1.7" AUTOCONF="autoconf-2.55" autoreconf-2.55
 }
 
 src_configure() {
-    ./configure --prefix=/after
+    AUTOMAKE="automake-1.7" ACLOCAL="aclocal-1.7" AUTOCONF="autoconf-2.55" ./configure --prefix="${PREFIX}" --program-suffix="-1.7" --infodir="${PREFIX}/info/automake-1.7.8"
 }
 
 src_compile() {

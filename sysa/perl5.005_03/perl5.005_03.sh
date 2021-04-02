@@ -21,10 +21,3 @@ src_prepare() {
     rm byterun.h byterun.c
     perl bytecode.pl
 }
-
-src_install() {
-    # Remove old perl
-    rm -rf "${PREFIX}"/lib/perl5/
-
-    default
-}

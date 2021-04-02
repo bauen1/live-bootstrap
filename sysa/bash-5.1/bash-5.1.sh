@@ -28,5 +28,6 @@ src_configure() {
 
 src_install() {
     # Do not install prebuilt .mo translation catalogs
+    install --directory "${DESTDIR}${PREFIX}/bin"
     install bash "${DESTDIR}${PREFIX}/bin"
 }

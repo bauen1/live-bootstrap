@@ -44,4 +44,5 @@ lib/config.h:
 	touch lib/config.h
 
 install: all
+	install --directory $(DESTDIR)$(PREFIX)/bin
 	install src/m4 $(DESTDIR)$(PREFIX)/bin

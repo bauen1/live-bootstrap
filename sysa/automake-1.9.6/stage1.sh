@@ -4,11 +4,11 @@
 
 src_prepare() {
     sed -i 's/1.8a/1.8.5/; s/ filename-length-max=99//' configure.ac
-    autoreconf-2.61 -f
+    AUTOMAKE="automake-1.8" ACLOCAL="aclocal-1.8" AUTOCONF="autoconf-2.61" AUTOM4TE="autom4te-2.61" autoreconf-2.61 -f
 }
 
 src_configure() {
-    ./configure --prefix=/after
+    AUTOMAKE="automake-1.8" ACLOCAL="aclocal-1.8" AUTOCONF="autoconf-2.61" AUTOM4TE="autom4te-2.61" ./configure --prefix="${PREFIX}" --program-suffix="-1.9" --infodir="${PREFIX}/info/automake-1.9"
 }
 
 src_compile() {

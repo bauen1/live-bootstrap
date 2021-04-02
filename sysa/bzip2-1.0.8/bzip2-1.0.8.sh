@@ -16,7 +16,8 @@ src_compile() {
 }
 
 src_install() {
-    install bzip2 ${DESTDIR}${PREFIX}/bin
-    ln -sf ${PREFIX}/bin/bzip2 ${DESTDIR}${PREFIX}/bin/bunzip2
-    ln -sf ${PREFIX}/bin/bzip2 ${DESTDIR}${PREFIX}/bin/bzcat
+    install --directory "${DESTDIR}${PREFIX}/bin"
+    install bzip2 "${DESTDIR}${PREFIX}"/bin
+    ln -sf bzip2 "${DESTDIR}${PREFIX}"/bin/bunzip2
+    ln -sf bzip2 "${DESTDIR}${PREFIX}"/bin/bzcat
 }

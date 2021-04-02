@@ -4,7 +4,7 @@
 
 src_prepare() {
     rm doc/standards.info
-    autoreconf-2.61 -f
+    AUTOMAKE="automake-1.8" ACLOCAL="aclocal-1.8" AUTOCONF="autoconf-2.61" AUTOM4TE="autom4te-2.61" autoreconf-2.61 -f
 
     # Install autoconf data files into versioned directory
     for file in */*/Makefile.in */Makefile.in Makefile.in; do
@@ -13,7 +13,7 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --prefix="${PREFIX}" --program-suffix=-2.61
+    AUTOMAKE="automake-1.8" ACLOCAL="aclocal-1.8" AUTOCONF="autoconf-2.61" AUTOM4TE="autom4te-2.61" ./configure --prefix="${PREFIX}" --program-suffix=-2.61 --infodir="${PREFIX}/info/autoconf-2.61"
 }
 
 src_compile() {

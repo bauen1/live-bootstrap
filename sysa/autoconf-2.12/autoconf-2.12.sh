@@ -11,7 +11,7 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --prefix=${PREFIX} --program-suffix=-2.12
+    ./configure --prefix="${PREFIX}" --program-suffix=-2.12 --infodir="${PREFIX}/info/autoconf-2.12"
 }
 
 src_compile() {
@@ -19,5 +19,6 @@ src_compile() {
 }
 
 src_install() {
-    make install MAKEINFO=true DESTDIR="${DESTDIR}"
+    # See autoconf-1.13
+    make install MAKEINFO=true prefix="${DESTDIR}${PREFIX}"
 }

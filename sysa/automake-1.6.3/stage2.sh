@@ -11,7 +11,7 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --prefix=/after
+    ./configure --prefix="${PREFIX}" --program-suffix="-1.6" --infodir="${PREFIX}/info/automake-1.6.3-stage2"
 }
 
 src_compile() {
@@ -21,11 +21,13 @@ src_compile() {
 }
 
 src_install() {
+    mkdir -p "${DESTDIR}${PREFIX}/bin"
     install automake "${DESTDIR}${PREFIX}"/bin/automake-1.6
-    mkdir -p "${DESTDIR}${PREFIX}"/share/automake-1.6/am
+    mkdir -p "${DESTDIR}${PREFIX}"/share/automake-1.6/am "${DESTDIR}${PREFIX}/share/automake-1.6/Automake"
     cp lib/Automake/*.pm "${DESTDIR}${PREFIX}"/share/automake-1.6/Automake/
     cp -r lib/am/*.am "${DESTDIR}${PREFIX}"/share/automake-1.6/am/
 
     install aclocal "${DESTDIR}${PREFIX}"/bin/aclocal-1.6
+    mkdir -p "${DESTDIR}${PREFIX}/share/aclocal-1.6"
     cp -r m4/*.m4 "${DESTDIR}${PREFIX}"/share/aclocal-1.6/
 }

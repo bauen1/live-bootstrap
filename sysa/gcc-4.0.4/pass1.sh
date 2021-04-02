@@ -21,13 +21,13 @@ src_prepare() {
     for dir in intl libcpp; do
         cd $dir
         rm aclocal.m4
-        aclocal-1.9 --acdir=../config
+        AUTOMAKE=automake-1.10 ACLOCAL=aclocal-1.10 AUTOM4TE=autom4te-2.61 aclocal-1.9 --acdir=../config
         cd ..
     done
     for dir in fixincludes gcc intl libcpp libiberty; do
         cd $dir
         rm configure
-        autoconf-2.61
+        AUTOMAKE=automake-1.10 ACLOCAL=aclocal-1.10 AUTOM4TE=autom4te-2.61 autoconf-2.61
         cd ..
     done
     cd libmudflap
@@ -94,6 +94,6 @@ src_compile() {
 }
 
 src_install() {
-    mkdir -p "${PREFIX}/lib/musl/gcc/i386-unknown-linux-gnu/4.0.4/install-tools/include"
+    mkdir -p "${DESTDIR}${PREFIX}/lib/musl/gcc/i386-unknown-linux-gnu/4.0.4/install-tools/include"
     make -C build/gcc install STMP_FIXINC= DESTDIR="${DESTDIR}"
 }

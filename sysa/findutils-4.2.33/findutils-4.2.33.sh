@@ -5,7 +5,7 @@
 src_prepare() {
     . ../../import-gnulib.sh
 
-    autoreconf-2.61 -f
+    AUTOMAKE="automake-1.9" ACLOCAL="aclocal-1.9" AUTOCONF="autoconf-2.61" AUTOM4TE="autom4te-2.61" autoreconf-2.61 -f
 
     # Pre-build texinfo files
     rm doc/find.info

@@ -3,11 +3,22 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 src_prepare() {
-    ./bootstrap
+    AUTOMAKE="automake-1.9" \
+        ACLOCAL="aclocal-1.9" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.61" \
+        AUTOM4TE="autom4te-2.61" \
+        ./bootstrap
 }
 
 src_configure() {
-    CC=tcc ./configure \
+    AUTOMAKE="automake-1.9" \
+        ACLOCAL="aclocal-1.9" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.61" \
+        AUTOM4TE="autom4te-2.61" \
+        CC=tcc \
+        ./configure \
         --prefix="${PREFIX}" \
         --libdir="${PREFIX}/lib/musl" \
         --disable-shared \

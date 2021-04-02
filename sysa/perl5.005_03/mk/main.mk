@@ -19,6 +19,7 @@ miniperl: $(MINIPERL_OBJ)
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@
 
 install: all
+	install --directory $(DESTDIR)$(PREFIX)/bin
 	install miniperl $(DESTDIR)$(PREFIX)/bin/perl
 	mkdir -p "$(DESTDIR)$(PRIVLIB_EXP)"
 	cp -r lib/* "$(DESTDIR)$(PRIVLIB_EXP)"

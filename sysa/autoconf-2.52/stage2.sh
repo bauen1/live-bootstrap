@@ -16,7 +16,7 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --prefix=${PREFIX} --program-suffix=-2.52
+    ./configure --prefix="${PREFIX}" --program-suffix=-2.52 --infodir="${PREFIX}/info/autoconf-2.52"
 }
 
 src_compile() {
@@ -25,8 +25,8 @@ src_compile() {
 
 src_install() {
     # Remove manually installed autoconf
-    rm ${PREFIX}/bin/autoconf-2.52
-    rm -rf ${PREFIX}/share/autoconf-2.52
+    #rm ${PREFIX}/bin/autoconf-2.52
+    #rm -rf ${PREFIX}/share/autoconf-2.52
 
     make install MAKEINFO=true DESTDIR="${DESTDIR}"
 }

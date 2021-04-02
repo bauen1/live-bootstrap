@@ -24,7 +24,7 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --prefix="${PREFIX}" --program-suffix=-2.53
+    ./configure --prefix="${PREFIX}" --program-suffix=-2.53 --infodir="${PREFIX}/info/autoconf-2.53"
 }
 
 src_compile() {

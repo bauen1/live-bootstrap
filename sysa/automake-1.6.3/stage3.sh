@@ -10,7 +10,7 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --prefix=/after
+    ./configure --prefix="${PREFIX}" --program-suffix="-1.6" --infodir="${PREFIX}/info/automake-1.6.3-stage3"
 }
 
 src_compile() {
@@ -19,10 +19,10 @@ src_compile() {
 
 src_install() {
     # cleanup old manual install
-    rm "${PREFIX}"/bin/automake-1.6
-    rm "${PREFIX}"/bin/aclocal-1.6
-    rm -rf "${PREFIX}"/share/automake-1.6
-    rm -rf "${PREFIX}"/share/aclocal-1.6
+    #rm "${PREFIX}"/bin/automake-1.6
+    #rm "${PREFIX}"/bin/aclocal-1.6
+    #rm -rf "${PREFIX}"/share/automake-1.6
+    #rm -rf "${PREFIX}"/share/aclocal-1.6
 
     make install MAKEINFO=true DESTDIR="${DESTDIR}"
 }

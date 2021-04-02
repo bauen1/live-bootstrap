@@ -3,11 +3,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 src_prepare() {
-    autoreconf-2.61 -f
+    AUTOMAKE="automake-1.9" ACLOCAL="aclocal-1.9" AUTOCONF="autoconf-2.61" AUTOM4TE="autom4te-2.61" autoreconf-2.61 -f
 }
 
 src_configure() {
-    ./configure --prefix=/after
+    AUTOMAKE="automake-1.9" ACLOCAL="aclocal-1.9" AUTOCONF="autoconf-2.61" AUTOM4TE="autom4te-2.61" ./configure --prefix="${PREFIX}" --program-suffix="-1.9" --infodir="${PREFIX}/info/automake-1.9"
 }
 
 src_compile() {

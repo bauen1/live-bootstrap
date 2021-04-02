@@ -30,4 +30,5 @@ sed/sed: $(SED_OBJ) libsed.a
 	$(CC) -o $@ $^
 
 install:
+	install --directory ${DESTDIR}${PREFIX}/bin
 	install sed/sed $(DESTDIR)$(PREFIX)/bin

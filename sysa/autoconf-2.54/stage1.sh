@@ -22,7 +22,7 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --prefix="${PREFIX}" --program-suffix=-2.54
+    ./configure --prefix="${PREFIX}" --program-suffix="-2.54" --infodir="${PREFIX}/info/autoconf-2.54"
 }
 
 src_compile() {
@@ -34,6 +34,4 @@ src_compile() {
 
 src_install() {
     make install MAKEINFO=true DESTDIR="${DESTDIR}"
-
-    ln -sf "${PREFIX}"/bin/autoconf-2.54 "${DESTDIR}${PREFIX}"/bin/autoconf
 }

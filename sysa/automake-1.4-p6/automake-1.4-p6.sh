@@ -13,7 +13,7 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --prefix=/after
+    ./configure --prefix="${PREFIX}" --program-suffix="-1.4" --infodir="${PREFIX}/info/automake-1.4"
 }
 
 src_compile() {

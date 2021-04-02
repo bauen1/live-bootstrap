@@ -97,7 +97,7 @@ src_configure() {
     sed -i '/#undef pid_t/d' libiberty/config.in
     sed -i '/#undef uintptr_t/d' libiberty/config.in
     sed -i '/NEED_DECLARATION_SBRK/d' binutils/config.in
-    for dir in bfd opcodes binutils gas ld; do    
+    for dir in bfd opcodes binutils gas ld; do
         sed -i '/#undef size_t/d' ${dir}/config.in
         sed -i '/#undef off_t/d' ${dir}/config.in
     done

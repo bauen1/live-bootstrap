@@ -63,8 +63,10 @@ build () {
 
     cd ../..
 
+    cd "${DESTDIR:=/}"
     echo "${pkg}: checksumming installed files."
     test -e "${checksum_f}" && sha256sum -c "${checksum_f}"
+    cd -
 
     echo "${pkg}: build successful"
     cd ..
@@ -155,4 +157,35 @@ call() {
 # Call default build stage function
 default() {
     "default_${build_stage}"
+}
+
+# select / unselect various versions of a package
+upkg_stow_wrapper1() {
+    stow \
+        --verbose \
+        --no-folding \
+        --target="${UPKG_ROOT:=/}" \
+        --dir="${UPKG_PKGSTORE:=${UPKG_ROOT}/upkgs}" \
+        "$@"
+}
+
+upkg_link_pkg() {
+    upkg_stow_wrapper1 --stow "$1"
+}
+
+upkg_unlink_pkg() {
+    upkg_stow_wrapper1 --delete "$1"
+}
+
+upkg_build1() {
+
+    pkg=$1
+    script_name=${2:-${pkg}.sh}
+
+    pkgsuffix=""
+    if test ! -z "$2"; then
+        pkgsuffix="-$(basename "$2")"
+    fi
+
+    DESTDIR="${UPKG_PKGSTORE}/${pkg}${pkgsuffix}"build "$@"
 }

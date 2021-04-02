@@ -11,7 +11,7 @@ src_prepare() {
 }
 
 src_configure() {
-    ./configure --prefix=${PREFIX} --program-suffix=-2.13
+    ./configure --prefix="${PREFIX}" --program-suffix=-2.13 --infodir="${PREFIX}/info/autoconf-2.13"
 }
 
 src_compile() {
@@ -19,5 +19,7 @@ src_compile() {
 }
 
 src_install() {
-    make install MAKEINFO=true DESTDIR="${DESTDIR}"
+    # This Makefile does *not* support DESTDIR so we need to trick it into doing the right
+    # thing
+    make install MAKEINFO=true prefix="${DESTDIR}${PREFIX}"
 }

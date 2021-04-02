@@ -32,10 +32,3 @@ src_prepare() {
     # We are using non-standard locations
     sed -i 's#/usr/include/errno.h#/after/include/musl/bits/errno.h#' ext/Errno/Errno_pm.PL
 }
-
-src_install() {
-    # Remove old perl
-    rm -rf "${PREFIX}"/lib/perl5/
-
-    default
-}

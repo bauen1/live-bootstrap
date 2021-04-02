@@ -17,10 +17,3 @@ src_prepare() {
         perl ${file}.pl
     done
 }
-
-src_install() {
-    # Remove old perl
-    rm -rf "${PREFIX}"/lib/perl5/
-
-    default
-}
