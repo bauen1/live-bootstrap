@@ -30,6 +30,8 @@ def main():
                         default="x86")
     parser.add_argument("-c", "--chroot", help="Run inside chroot",
                         action="store_true")
+    parser.add_argument("-u", "--unshare", help="Run chroot inside user namespace",
+                        action="store_true")
     parser.add_argument("-p", "--preserve", help="Do not unmount temporary dir",
                         action="store_true")
     parser.add_argument("-t", "--tmpdir", help="Temporary directory")
@@ -48,6 +50,8 @@ def main():
     args = parser.parse_args()
     if args.chroot and args.minikernel:
         raise ValueError("chroot and minikernel options cannot be used simultaneously.")
+    if args.unshare and not args.chroot:
+        raise ValueError("unshare requires chroot.")
 
     if args.arch != "x86":
         raise ValueError("Only x86 is supported at the moment.")
@@ -88,7 +92,14 @@ print(shutil.which('chroot'))
         chroot_binary = run('sudo', 'python3', '-c', find_chroot,
                             capture_output=True).stdout.decode().strip()
         init = os.path.join(os.sep, 'bootstrap-seeds', 'POSIX', args.arch, 'kaem-optional-seed')
-        run('sudo', 'env', '-i', 'PATH=/bin', chroot_binary, tmp_dir, init)
+        if args.unshare:
+            # just unshare everything except time
+            unshare_script = os.path.join(os.path.dirname(os.path.join(__file__)), 'unshare_setup.sh')
+            run('unshare', '--ipc', '--mount', '--net', '--pid', '--uts', '--user', '--cgroup',
+                '--fork', '--map-root-user', '--', unshare_script, tmp_dir, init)
+        else:
+            run('sudo', 'env', '-i', 'PATH=/bin', chroot_binary, tmp_dir, init)
+
         return
 
     if args.minikernel:

@@ -137,8 +137,10 @@ class SysA:
         """
         if not os.path.isdir(self.tmp_dir):
             os.mkdir(self.tmp_dir)
-        print("Mounting tmpfs on %s" % (self.tmp_dir))
-        mount('tmpfs', self.tmp_dir, 'tmpfs', 'size=8G')
+
+        if not self.preserve_tmp:
+            print("Mounting tmpfs on %s" % (self.tmp_dir))
+            mount('tmpfs', self.tmp_dir, 'tmpfs', 'size=8G')
 
         self.stage0_posix()
         self.after()
