@@ -8,13 +8,18 @@ src_prepare() {
     AUTOMAKE="automake-1.10" \
         ACLOCAL="aclocal-1.10" \
         AUTORECONF="autoreconf-2.61" \
-        AUTOCONF="autoconf-2.61" \
-        AUTOM4TE="autom4te-2.61" \
+        AUTOCONF="autoconf-2.65" \
+        AUTOM4TE="autom4te-2.65" \
     ./bootstrap
 }
 
 src_configure() {
-    ./configure --prefix="${PREFIX}" --program-suffix="1.11" --infodir="${PREFIX}/infodir/automake-1.11"
+    AUTOMAKE="automake-1.10" \
+        ACLOCAL="aclocal-1.10" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.65" \
+        AUTOM4TE="autom4te-2.65" \
+    ./configure --prefix="${PREFIX}" --program-suffix="-1.11" --infodir="${PREFIX}/infodir/automake-1.11" --docdir="${PREFIX}/share/doc/automake-1.11"
 }
 
 src_compile() {

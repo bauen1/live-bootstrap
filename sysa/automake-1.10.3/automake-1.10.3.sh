@@ -22,7 +22,12 @@ src_configure() {
         AUTORECONF="autoreconf-2.61" \
         AUTOCONF="autoconf-2.61" \
         AUTOM4TE="autom4te-2.61" \
-        ./configure CC=tcc --prefix="${PREFIX}" --program-suffix="-1.10" --infodir="${PREFIX}/infodir/automake-1.10"
+        ./configure \
+        CC=tcc \
+        --prefix="${PREFIX}" \
+        --program-suffix="-1.10" \
+        --infodir="${PREFIX}/infodir/automake-1.10" \
+        --docdir="${PREFIX}/share/doc/automake-1.10"
 }
 
 src_compile() {

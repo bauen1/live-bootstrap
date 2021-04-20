@@ -4,6 +4,11 @@
 
 src_prepare() {
     rm doc/standards.info
+    AUTOMAKE="automake-1.11" \
+        ACLOCAL="aclocal-1.11" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.65" \
+        AUTOM4TE="autom4te-2.65" \
     autoreconf-2.65 -f
 
     # Install autoconf data files into versioned directory
@@ -13,6 +18,11 @@ src_prepare() {
 }
 
 src_configure() {
+    AUTOMAKE="automake-1.11" \
+        ACLOCAL="aclocal-1.11" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.65" \
+        AUTOM4TE="autom4te-2.65" \
     ./configure --prefix="${PREFIX}" --program-suffix=-2.69
 }
 
