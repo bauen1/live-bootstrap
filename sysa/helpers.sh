@@ -177,15 +177,23 @@ upkg_unlink_pkg() {
     upkg_stow_wrapper1 --delete "$1"
 }
 
-upkg_build1() {
-
+# Arguments: same as build, but also exports DESTDIR correctly for upkg operations, version 1
+upkg_simple_build1() {
     pkg=$1
     script_name=${2:-${pkg}.sh}
 
     pkgsuffix=""
     if test ! -z "$2"; then
-        pkgsuffix="-$(basename "$2")"
+        pkgsuffix="-$(basename "${2%.sh}")"
     fi
 
-    DESTDIR="${UPKG_PKGSTORE}/${pkg}${pkgsuffix}"build "$@"
+    DESTDIR="${UPKG_PKGSTORE}/${pkg}${pkgsuffix}" build "$@"
+
+    unset pkg
+    unset script_name
+    unset pkgsuffix
 }
+
+#upkg_simple_build2() {
+#
+#}

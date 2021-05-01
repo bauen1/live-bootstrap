@@ -8,14 +8,26 @@ src_prepare() {
     . ../../import-gnulib.sh
 
     # We don't have autopoint from gettext yet
-    AUTOPOINT=true autoreconf -fi
+    AUTOMAKE="automake-1.15" \
+        ACLOCAL="aclocal-1.15" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.69" \
+        AUTOM4TE="autom4te-2.69" \
+        AUTOPOINT=true \
+        autoreconf-2.61 -fi
 
     # Remove bison pregenerated file
     rm gnu/parse-datetime.c
 }
 
 src_configure() {
-    FORCE_UNSAFE_CONFIGURE=1 ./configure \
+    AUTOMAKE="automake-1.15" \
+        ACLOCAL="aclocal-1.15" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.69" \
+        AUTOM4TE="autom4te-2.69" \
+        FORCE_UNSAFE_CONFIGURE=1 \
+        ./configure \
         --prefix="${PREFIX}" \
         --disable-nls \
         --target=i386-unknown-linux-gnu \

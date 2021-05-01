@@ -5,13 +5,23 @@
 src_prepare() {
     default
 
-    ./bootstrap
+    AUTOMAKE="automake-1.10" \
+        ACLOCAL="aclocal-1.10" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.69" \
+        AUTOM4TE="autom4te-2.69" \
+        ./bootstrap
 
     rm doc/automake-history.info
 }
 
 src_configure() {
-    ./configure --prefix=/after
+    AUTOMAKE="automake-1.10" \
+        ACLOCAL="aclocal-1.10" \
+        AUTORECONF="autoreconf-2.61" \
+        AUTOCONF="autoconf-2.69" \
+        AUTOM4TE="autom4te-2.69" \
+        ./configure --prefix="${PREFIX}" --program-suffix="-1.15" --infodir="${PREFIX}/infodir/automake-1.15" --docdir="${PREFIX}/share/doc/automake-1.15"
 }
 
 src_compile() {

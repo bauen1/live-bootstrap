@@ -28,7 +28,7 @@ export UPKG_PKGSTORE=/upkgs
 
 mkdir "${UPKG_PKGSTORE}"
 
-DESTDIR="${UPKG_PKGSTORE}/flex-2.5.11" build flex-2.5.11
+upkg_simple_build1 flex-2.5.11
 ln --verbose --symbolic "../../upkgs/flex-2.5.11/after/bin/flex" "/after/bin/"
 ln --verbose --symbolic "../../upkgs/flex-2.5.11/after/bin/lex" "/after/bin/"
 
@@ -64,10 +64,10 @@ ln --verbose --symbolic "../../upkgs/bzip2-1.0.8-pass2/after/bin/bzip2" "/after/
 ln --verbose --symbolic "../../upkgs/bzip2-1.0.8-pass2/after/bin/bunzip2" "/after/bin/"
 ln --verbose --symbolic "../../upkgs/bzip2-1.0.8-pass2/after/bin/bzcat" "/after/bin/"
 
-DESTDIR="${UPKG_PKGSTORE}/m4-1.4.7" build m4-1.4.7
+upkg_simple_build1 m4-1.4.7
 ln --verbose --symbolic "../../upkgs/m4-1.4.7/after/bin/m4" "/after/bin/"
 
-DESTDIR="${UPKG_PKGSTORE}/flex-2.6.4" build flex-2.6.4
+upkg_simple_build1 flex-2.6.4
 rm "/after/bin/flex" "/after/bin/lex"
 ln --verbose --symbolic "../../upkgs/flex-2.6.4/after/bin/flex" "/after/bin/"
 ln --verbose --symbolic "../../upkgs/flex-2.6.4/after/bin/lex" "/after/bin/"
@@ -76,12 +76,12 @@ build bison-3.4.1 stage1.sh checksums/stage1
 build bison-3.4.1 stage2.sh checksums/stage2
 build bison-3.4.1 stage3.sh checksums/stage3
 
-DESTDIR="${UPKG_PKGSTORE}/grep-2.4" build grep-2.4
+upkg_simple_build1 grep-2.4
 ln --verbose --symbolic "../../upkgs/grep-2.4/after/bin/grep" "/after/bin/"
 ln --verbose --symbolic "../../upkgs/grep-2.4/after/bin/egrep" "/after/bin/"
 ln --verbose --symbolic "../../upkgs/grep-2.4/after/bin/fgrep" "/after/bin/"
 
-DESTDIR="${UPKG_PKGSTORE}/diffutils-2.7" build diffutils-2.7
+upkg_simple_build1 diffutils-2.7
 ln --verbose --symbolic "../../upkgs/diffutils-2.7/after/bin/cmp" "/after/bin/"
 ln --verbose --symbolic "../../upkgs/diffutils-2.7/after/bin/diff" "/after/bin/"
 
@@ -92,21 +92,21 @@ build coreutils-5.0 coreutils-5.0.sh checksums/pass2
 # Build only date, mktemp and sha256sum
 build coreutils-6.10
 
-DESTDIR="${UPKG_PKGSTORE}/gawk-3.0.4" build gawk-3.0.4
+upkg_simple_build1 gawk-3.0.4
 ln --verbose --symbolic "../../upkgs/gawk-3.0.4/after/bin/gawk" "/after/bin/"
 ln --verbose --symbolic "../../upkgs/gawk-3.0.4/after/bin/awk" "/after/bin/"
 ln --verbose --symbolic "../../upkgs/gawk-3.0.4/after/share/awk" "/after/share/"
 
-DESTDIR="${UPKG_PKGSTORE}/perl-5.000" build perl-5.000
+upkg_simple_build1 perl-5.000
 ln --verbose --symbolic "../../upkgs/perl-5.000/after/bin/perl" "/after/bin/"
 
-DESTDIR="${UPKG_PKGSTORE}/perl-5.003" build perl-5.003
+upkg_simple_build1 perl-5.003
 rm "/after/bin/perl" # remove perl-5.000
 install --directory "/after/lib/perl5"
 ln --verbose --symbolic "../../upkgs/perl-5.003/after/bin/perl" "/after/bin/"
 ln --verbose --symbolic "../../../upkgs/perl-5.003/after/lib/perl5/5.003" "/after/lib/perl5/" # TODO: does stow recognise this ?
 
-DESTDIR="${UPKG_PKGSTORE}/perl5.004_05" build perl5.004_05
+upkg_simple_build1 perl5.004_05
 # remove perl-5.003
 rm "/after/bin/perl"
 rm "/after/lib/perl5/5.003"
@@ -114,7 +114,7 @@ rm "/after/lib/perl5/5.003"
 ln --verbose --symbolic "../../upkgs/perl5.004_05/after/bin/perl" "/after/bin/"
 ln --verbose --symbolic "../../../upkgs/perl5.004_05/after/lib/perl5/5.004_05" "/after/lib/perl5/"
 
-DESTDIR="${UPKG_PKGSTORE}/perl5.005_03" build perl5.005_03
+upkg_simple_build1 perl5.005_03
 # remove perl5.004_05
 rm "/after/bin/perl"
 rm "/after/lib/perl5/5.004_05"
@@ -122,7 +122,7 @@ rm "/after/lib/perl5/5.004_05"
 ln --verbose --symbolic "../../upkgs/perl5.005_03/after/bin/perl" "/after/bin/"
 ln --verbose --symbolic "../../../upkgs/perl5.005_03/after/lib/perl5/5.005_03" "/after/lib/perl5/"
 
-DESTDIR="${UPKG_PKGSTORE}/perl-5.6.2" build perl-5.6.2
+upkg_simple_build1 perl-5.6.2
 # remove perl5.005_03
 rm "/after/bin/perl"
 rm "/after/lib/perl5/5.005_03"
@@ -137,37 +137,37 @@ build stow-2.2.2
 
 populate_device_nodes
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.52-stage1" build autoconf-2.52 stage1.sh
+upkg_simple_build1 autoconf-2.52 stage1.sh
 upkg_link_pkg "autoconf-2.52-stage1"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.6.3-stage1" build automake-1.6.3 stage1.sh
+upkg_simple_build1 automake-1.6.3 stage1.sh
 upkg_link_pkg "automake-1.6.3-stage1"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.6.3-stage2" build automake-1.6.3 stage2.sh
+upkg_simple_build1 automake-1.6.3 stage2.sh
 upkg_unlink_pkg "automake-1.6.3-stage1"
 upkg_link_pkg "automake-1.6.3-stage2"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.6.3-stage3" build automake-1.6.3 stage3.sh
+upkg_simple_build1 automake-1.6.3 stage3.sh
 upkg_unlink_pkg "automake-1.6.3-stage2"
 upkg_link_pkg "automake-1.6.3-stage3"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.4-p6" build automake-1.4-p6
+upkg_simple_build1 automake-1.4-p6
 upkg_link_pkg "automake-1.4-p6"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.52-stage2" build autoconf-2.52 stage2.sh
+upkg_simple_build1 autoconf-2.52 stage2.sh
 upkg_unlink_pkg "autoconf-2.52-stage1"
 upkg_link_pkg "autoconf-2.52-stage2"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.13" build autoconf-2.13
+upkg_simple_build1 autoconf-2.13
 upkg_link_pkg "autoconf-2.13"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.12" build autoconf-2.12
+upkg_simple_build1 autoconf-2.12
 upkg_link_pkg "autoconf-2.12"
 
-DESTDIR="${UPKG_PKGSTORE}/libtool-1.4" build libtool-1.4
+upkg_simple_build1 libtool-1.4
 upkg_link_pkg "libtool-1.4"
 
-DESTDIR="${UPKG_PKGSTORE}/binutils-2.14" build binutils-2.14
+upkg_simple_build1 binutils-2.14
 upkg_link_pkg "binutils-2.14"
 
 # Build musl with fewer patches
@@ -183,85 +183,85 @@ DESTDIR="${UPKG_PKGSTORE}/tcc-0.9.27-pass3" build tcc-0.9.27 tcc-musl-pass3.sh c
 upkg_unlink_pkg "tcc-0.9.27-pass2"
 upkg_link_pkg "tcc-0.9.27-pass3"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.53-stage1" build autoconf-2.53 stage1.sh
+upkg_simple_build1 autoconf-2.53 stage1.sh
 upkg_link_pkg "autoconf-2.53-stage1"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.53-stage2" build autoconf-2.53 stage2.sh
+upkg_simple_build1 autoconf-2.53 stage2.sh
 upkg_unlink_pkg "autoconf-2.53-stage1"
 upkg_link_pkg "autoconf-2.53-stage2"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.7-stage1" build automake-1.7 stage1.sh
+upkg_simple_build1 automake-1.7 stage1.sh
 upkg_link_pkg "automake-1.7-stage1"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.54-stage1" build autoconf-2.54 stage1.sh
+upkg_simple_build1 autoconf-2.54 stage1.sh
 upkg_link_pkg "autoconf-2.54-stage1"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.54-stage2" build autoconf-2.54 stage2.sh
+upkg_simple_build1 autoconf-2.54 stage2.sh
 upkg_unlink_pkg "autoconf-2.54-stage1"
 upkg_link_pkg "autoconf-2.54-stage2"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.7-stage2" build automake-1.7 stage2.sh
+upkg_simple_build1 automake-1.7 stage2.sh
 upkg_unlink_pkg "automake-1.7-stage1"
 upkg_link_pkg "automake-1.7-stage2"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.55" build autoconf-2.55
+upkg_simple_build1 autoconf-2.55
 upkg_link_pkg "autoconf-2.55"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.7.8" build automake-1.7.8
+upkg_simple_build1 automake-1.7.8
 upkg_unlink_pkg "automake-1.7-stage2"
 upkg_link_pkg "automake-1.7.8"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.57" build autoconf-2.57
+upkg_simple_build1 autoconf-2.57
 upkg_link_pkg "autoconf-2.57"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.59" build autoconf-2.59
+upkg_simple_build1 autoconf-2.59
 upkg_link_pkg "autoconf-2.59"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.8.5" build automake-1.8.5
+upkg_simple_build1 automake-1.8.5
 upkg_link_pkg "automake-1.8.5"
 
-DESTDIR="${UPKG_PKGSTORE}/help2man-1.36.4" build help2man-1.36.4
+upkg_simple_build1 help2man-1.36.4
 upkg_link_pkg "help2man-1.36.4"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.61-stage1" build autoconf-2.61 stage1.sh
+upkg_simple_build1 autoconf-2.61 stage1.sh
 upkg_link_pkg "autoconf-2.61-stage1"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.61-stage2" build autoconf-2.61 stage2.sh
+upkg_simple_build1 autoconf-2.61 stage2.sh
 upkg_unlink_pkg "autoconf-2.61-stage1"
 upkg_link_pkg "autoconf-2.61-stage2"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.9.6-stage1" build automake-1.9.6 stage1.sh
+upkg_simple_build1 automake-1.9.6 stage1.sh
 upkg_link_pkg "automake-1.9.6-stage1"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.9.6-stage2" build automake-1.9.6 stage2.sh
+upkg_simple_build1 automake-1.9.6 stage2.sh
 upkg_unlink_pkg "automake-1.9.6-stage1"
 upkg_link_pkg "automake-1.9.6-stage2"
 
-DESTDIR="${UPKG_PKGSTORE}/findutils-4.2.33" build findutils-4.2.33
+upkg_simple_build1 findutils-4.2.33
 upkg_link_pkg "findutils-4.2.33"
 
-DESTDIR="${UPKG_PKGSTORE}/libtool-2.2.4" build libtool-2.2.4
+upkg_simple_build1 libtool-2.2.4
 upkg_unlink_pkg "libtool-1.4"
 upkg_link_pkg "libtool-2.2.4"
 
-DESTDIR="${UPKG_PKGSTORE}/automake-1.10.3" build automake-1.10.3
+upkg_simple_build1 automake-1.10.3
 upkg_link_pkg "automake-1.10.3"
 
-DESTDIR="${UPKG_PKGSTORE}/autoconf-2.65" build autoconf-2.65
+upkg_simple_build1 autoconf-2.65
 upkg_link_pkg "autoconf-2.65"
 
-DESTDIR="${UPKG_PKGSTORE}/gcc-4.0.4-pass1" build gcc-4.0.4 pass1.sh checksums/pass1
+upkg_simple_build1 gcc-4.0.4 pass1.sh checksums/pass1
 upkg_link_pkg "gcc-4.0.4-pass1"
 
-DESTDIR="${UPKG_PKGSTORE}/musl-1.2.2" build musl-1.2.2
+upkg_simple_build1 musl-1.2.2
 upkg_unlink_pkg "musl-1.1.24-patches-pass3"
 upkg_link_pkg "musl-1.2.2"
 
-DESTDIR="${UPKG_PKGSTORE}/gcc-4.0.4-pass2" build gcc-4.0.4 pass2.sh checksums/pass2
+upkg_simple_build1 gcc-4.0.4 pass2.sh checksums/pass2
 upkg_unlink_pkg "gcc-4.0.4-pass1"
 upkg_link_pkg "gcc-4.0.4-pass1"
 
-DESTDIR="${UPKG_PKGSTORE}/bash-5.1" build bash-5.1
+upkg_simple_build1 bash-5.1
 mv "/after/bin/bash" "/after/bin/bash.old"
 upkg_link_pkg "bash-5.1"
 
