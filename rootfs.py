@@ -89,8 +89,6 @@ def bootstrap(args, tmp_dir, initramfs_path):
 import shutil
 print(shutil.which('chroot'))
 """
-        chroot_binary = run('sudo', 'python3', '-c', find_chroot,
-                            capture_output=True).stdout.decode().strip()
         init = os.path.join(os.sep, 'bootstrap-seeds', 'POSIX', args.arch, 'kaem-optional-seed')
         if args.unshare:
             # just unshare everything except time
@@ -98,6 +96,8 @@ print(shutil.which('chroot'))
             run('unshare', '--ipc', '--mount', '--net', '--pid', '--uts', '--user', '--cgroup',
                 '--fork', '--map-root-user', '--', unshare_script, tmp_dir, init)
         else:
+            chroot_binary = run('sudo', 'python3', '-c', find_chroot,
+                            capture_output=True).stdout.decode().strip()
             run('sudo', 'env', '-i', 'PATH=/bin', chroot_binary, tmp_dir, init)
 
         return
